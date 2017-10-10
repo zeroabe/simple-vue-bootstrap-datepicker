@@ -1,0 +1,18 @@
+{
+  "name": "simple-vue-bootstrap-datepicker",
+  "version": "1.0.5",
+  "description": "Simple datepicker for most browsers",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "zeroabe",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "bootstrap-datepicker": "^1.7.1",
+    "jquery": "^3.2.1",
+    "moment": "^2.18.1",
+    "vue": "^2.4.4"
+  }
+}
