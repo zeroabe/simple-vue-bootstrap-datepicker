@@ -108,8 +108,8 @@
       },
 
       createDatePicker(el) {
-        let mycomp = $(el.querySelector('.calendar')).datepicker(this.config)
-        mycomp.on('changeDate', e => {
+        let picker = $(el.querySelector('.calendar')).datepicker(this.config)
+        picker.on('changeDate', e => {
           this.value = moment(e.date).format('DD.MM.YYYY')
           this.$emit('date-change', this.value)
           $(e.target).datepicker('hide')
