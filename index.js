@@ -10,6 +10,6 @@ Object.defineProperties(Vue.prototype, {
     }
 })
 
-Vue.component('simple-date-picker', DatePicker);
+Vue.component(DatePicker.name, DatePicker);
 
 export default DatePicker

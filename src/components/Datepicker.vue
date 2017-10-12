@@ -1,13 +1,14 @@
 <template>
-  <div class='input-group date'>
-    <input
-        :style="'width: ' + width + 'px;'"
-        class="calendar form-control"
-        type='text'
-        v-model="value"
-        @keydown="handleKey"
-        :placeholder="pickerPlaceholder"/>
-  </div>
+    <div class='input-group date'>
+        <input
+                :style="'width: ' + width + 'px;'"
+                class="calendar form-control"
+                type='text'
+                v-model="value"
+                @keydown="handleKey"
+                @blur="handleBlur"
+                :placeholder="pickerPlaceholder"/>
+    </div>
 </template>
 <script>
   const $ = window.jQuery = require('jquery')
@@ -16,6 +17,7 @@
   import 'bootstrap'
   import 'bootstrap-datepicker'
   import '../styles/datepicker.css'
+
   $.fn.datepicker.dates['ru'] = {
     days: ["Воскресение", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"],
     daysShort: ["Вск", "Пнд", "Втр", "Срд", "Чтв", "Птн", "Суб"],
@@ -30,7 +32,7 @@
   };
 
   export default {
-    name: 'simple-datepicker',
+    name: 'simple-date-picker',
 
     props: {
       format: {
@@ -69,7 +71,7 @@
       }
     },
 
-    data () {
+    data() {
       return {
         value: this.date || this.defaultDate,
         pickerPlaceholder: this.placeholder || 'Введите дату',
@@ -94,11 +96,17 @@
 
     methods: {
       handleKey(e) {
-        if(e.key === 'Enter') {
+        if (e.key === 'Enter') {
           this.$emit('date-change', this.value)
           $(e.target).datepicker('hide')
         }
       },
+
+      handleBlur(e) {
+        this.$emit('date-change', this.value)
+        $(e.target).datepicker('hide')
+      },
+
       createDatePicker(el) {
         let mycomp = $(el.querySelector('.calendar')).datepicker(this.config)
         mycomp.on('changeDate', e => {
@@ -116,7 +124,7 @@
     mounted() {
       this.createDatePicker(this.$el)
       this.$datePickerBus.$on('document-type-changed', () => {
-        this.$nextTick( () => {
+        this.$nextTick(() => {
           $(this.$el.querySelector('.calendar')).datepicker('setEndDate', this.endDate || false)
           $(this.$el.querySelector('.calendar')).datepicker('setStartDate', this.startDate || false)
         })
@@ -129,7 +137,7 @@
   }
 </script>
 <style>
-  .calendar {
-    min-height: 26px;
-  }
+    .calendar {
+        min-height: 26px;
+    }
 </style>
