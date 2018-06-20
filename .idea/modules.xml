@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/datepicker.iml" filepath="$PROJECT_DIR$/.idea/datepicker.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/simple-vue-bootstrap-datepicker.iml" filepath="$PROJECT_DIR$/.idea/simple-vue-bootstrap-datepicker.iml" />
     </modules>
   </component>
 </project>

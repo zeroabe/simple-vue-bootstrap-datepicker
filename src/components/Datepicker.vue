@@ -67,6 +67,10 @@
       },
       startDate: {
         type: String
+      },
+      pattern: {
+        type: String,
+        default: '^(\\d{2})\\.(\\d{2})\\.(\\d{4})$'
       }
     },
 
@@ -96,7 +100,10 @@
           return this.value
         },
         set(v) {
-          this.$emit('input', v)
+            let matchDate = v.match(new RegExp(this.pattern));
+            if(matchDate){
+                this.$emit('input', v)
+            }
         }
       }
     },
@@ -104,6 +111,7 @@
     methods: {
       handleChange(e) {
         this.date = e.target.value
+        this.$emit('type', this.date)
       },
 
       createDatePicker(el) {
@@ -111,6 +119,7 @@
         this.picker.on('changeDate', e => {
           this.date = moment(e.date).format('DD.MM.YYYY')
           $(e.target).datepicker('hide')
+          this.$emit('pick', this.date)
         })
       },
 
